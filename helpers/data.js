@@ -1,4 +1,4 @@
-export default [
+export const data= [
   {
     "name": "Wireless Headphones",
     "description": "Over-ear Bluetooth headphones with noise cancellation and 20 hours battery life.",
