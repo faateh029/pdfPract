@@ -2,6 +2,7 @@ import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import path from 'path';
 
 // Create __filename and __dirname equivalents
 const __filename = fileURLToPath(import.meta.url);
