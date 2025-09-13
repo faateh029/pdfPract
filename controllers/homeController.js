@@ -13,7 +13,8 @@ export const homeView = (req , res)=>{
 }
 
 export const generatePdf = (req , res , next)=>{
-    const html = fs.readFileSync(__dirname , "../views/templates.html" , "utf-8");
+    const templatePath = path.join(__dirname , "../views/template.html")
+    const html = fs.readFileSync(templatePath , "utf-8");
     const filename = Math.random()+'_doc' + '.pdf';
     let array=[];
     data.forEach(p=>{
@@ -22,6 +23,8 @@ export const generatePdf = (req , res , next)=>{
             description:p.description,
             quantity:p.quantity,
             unit:p.unit,
+            price:p.price,
+            total:p.quantity*p.price,
             imgurl:p.imgurl
         }
         array.push(prod);
@@ -38,12 +41,14 @@ export const generatePdf = (req , res , next)=>{
         tax,
         gTotal:grandTotal
     }
+    const docsPath = path.join(__dirname, "../docs", filename);
+
     const document = {
         html:html,
         data:{
             products:obj
         },
-        path:'./docs'+filename
+        path:docsPath
     }
     pdf.create(document , options).then(res=>{
           console.log(res);

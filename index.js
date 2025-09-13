@@ -13,6 +13,7 @@ app.set('view engine' , 'ejs');
 app.use(expressLayouts);
 
 app.use(express.static(path.join(__dirname , 'public'))) ;
+app.use('/docs' , express.static(path.join(__dirname , 'docs')));
 app.use('/', homeRouter);
 
 app.listen(3001,()=>{
